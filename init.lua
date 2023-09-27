@@ -142,15 +142,6 @@ require('lazy').setup({
     },
   },
 
-  {
-    -- theme
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    priority = 5000,
-    config = function()
-      vim.cmd.colorscheme 'catppuccin-mocha'
-    end,
-  },
 
   {
     -- Set lualine as statusline
@@ -209,6 +200,7 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+  -- plugins I added
   {
     'akinsho/flutter-tools.nvim',
     lazy = false,
@@ -231,6 +223,33 @@ require('lazy').setup({
       "nvim-lua/plenary.nvim",
     },
   },
+  --auto bracket pairing
+
+  {
+    "windwp/nvim-autopairs",
+    -- Optional dependency
+    dependencies = { 'hrsh7th/nvim-cmp' },
+    config = function()
+      require("nvim-autopairs").setup {}
+      -- If you want to automatically add `(` after selecting a function or method
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      local cmp = require('cmp')
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+      )
+    end,
+  },
+  {
+    -- theme
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 5000,
+    config = function()
+      vim.cmd.colorscheme 'catppuccin-mocha'
+    end,
+  },
+
 
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
