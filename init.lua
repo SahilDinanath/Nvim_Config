@@ -103,6 +103,8 @@ require('lazy').setup({
 
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
+      -- Adds file path completion
+      'hrsh7th/cmp-path',
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
@@ -141,7 +143,6 @@ require('lazy').setup({
       end,
     },
   },
-
 
   {
     -- Set lualine as statusline
@@ -222,6 +223,7 @@ require('lazy').setup({
 -- custom settings
 -- set relative line numbers
 local options = {
+  guicursor = "",
   -- set relative line numbers
   relativenumber = true,
   -- Set highlight on search
@@ -237,14 +239,20 @@ local options = {
   tabstop = 4,
   softtabstop = 4,
   shiftwidth = 4,
+  expandtab = true,
+  -- manage file backup
+  swapfile = false,
+  backup = false,
+  undodir = os.getenv("HOME") .. "/.vim/undodir",
+  -- Save undo history
+  undofile = true,
   -- Sync clipboard between OS and Neovim.
   --  Remove this option if you want your OS clipboard to remain independent.
   --  See `:help 'clipboard'`
   clipboard = 'unnamedplus',
   -- Enable break indent
   breakindent = true,
-  -- Save undo history
-  undofile = true,
+
   -- Case-insensitive searching UNLESS \C or capital in search
   ignorecase = true,
   smartcase = true,
@@ -267,12 +275,17 @@ end
 -- [[ Basic Keymaps ]]
 
 -- my custom keymaps
+vim.keymap.set('n', '<leader>fe', vim.cmd.Ex)
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('i', 'jk', '<Esc>', { silent = true })
 vim.keymap.set('n', '<leader>gg', require('lazygit').lazygit, { silent = true })
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -333,17 +346,17 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-  auto_install = true,
+  auto_install = false,
 
   highlight = { enable = true },
   indent = { enable = true },
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
+      init_selection = '<c-c>',
+      node_incremental = '<c-c>',
       scope_incremental = '<c-s>',
-      node_decremental = '<M-space>',
+      node_decremental = '<M-c>',
     },
   },
   textobjects = {
@@ -510,11 +523,12 @@ cmp.setup {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
+    ['<C-c>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
+
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -537,6 +551,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'path' },
   },
 }
 
