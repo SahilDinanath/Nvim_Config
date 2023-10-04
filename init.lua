@@ -151,7 +151,6 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'catppuccin',
         component_separators = '|',
         section_separators = '',
       },
@@ -223,7 +222,6 @@ require('lazy').setup({
 -- custom settings
 -- set relative line numbers
 local options = {
-  guicursor = "",
   -- set relative line numbers
   relativenumber = true,
   -- Set highlight on search
@@ -276,10 +274,10 @@ end
 
 -- my custom keymaps
 vim.keymap.set('n', '<leader>fe', vim.cmd.Ex)
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('i', 'jk', '<Esc>', { silent = true })
 vim.keymap.set('n', '<leader>gg', require('lazygit').lazygit, { silent = true })
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
