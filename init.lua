@@ -279,12 +279,7 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
---harpoon keymaps
-vim.keymap.set('n', '<leader>ma', require('harpoon.mark').add_file(), { desc = "[M]ark [A]dd" })
-vim.keymap.set('n', '<leader>mn', require('harpoon.ui').nav_next(), { desc = "[M]ark [N]ext" })
-vim.keymap.set('n', '<leader>mp', require('harpoon.ui').nav_prev(), { desc = "[M]ark [P]rev" })
-vim.keymap.set('n', '<leader>mu', require('harpoon.ui').toggle_quick_menu(), { desc = "[M]ark [U]i" })
-
+--
 --lazygit keymaps
 vim.keymap.set('n', '<leader>gg', require('lazygit').lazygit, { silent = true })
 -- Keymaps for better default experience
