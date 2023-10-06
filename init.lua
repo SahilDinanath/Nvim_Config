@@ -157,20 +157,6 @@ require('lazy').setup({
     },
   },
 
-  -- {
-  --   -- Add indentation guides even on blank lines
-  --   'lukas-reineke/indent-blankline.nvim',
-  --   -- Enable `lukas-reineke/indent-blankline.nvim`
-  --   -- See `:help indent_blankline.txt`
-  --   main = 'ibl',
-  --   opts = {
-  --     --
-  --     --char = '┊',
-  --     -- show_trailing_blankline_indent = false,
-  --     scope = { enabled = false }
-  --   },
-  -- },
-  --
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
@@ -406,7 +392,7 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
-
+--
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
