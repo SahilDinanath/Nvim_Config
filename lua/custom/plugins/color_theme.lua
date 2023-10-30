@@ -1,18 +1,9 @@
 return {
-	-- theme
 	{
-		'catppuccin/nvim',
-		name = 'catppuccin',
-		priority = 5000,
+		'RRethy/nvim-base16',
+		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme 'catppuccin-mocha'
-		end,
+			vim.cmd.colorscheme 'base16-horizon-dark'
+		end
 	}
-	-- {
-	-- 	'RRethy/nvim-base16',
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		vim.cmd.colorscheme 'base16-horizon-dark'
-	-- 	end
-	-- }
 }
