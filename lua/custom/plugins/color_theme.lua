@@ -3,7 +3,16 @@ return {
 		'RRethy/nvim-base16',
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme 'base16-horizon-dark'
+			require('base16-colorscheme').with_config({
+				telescope = false,
+				indentblankline = true,
+				notify = true,
+				ts_rainbow = true,
+				cmp = true,
+				illuminate = true,
+			})
+			vim.cmd.colorscheme 'base16-da-one-ocean'
 		end
 	}
+
 }
