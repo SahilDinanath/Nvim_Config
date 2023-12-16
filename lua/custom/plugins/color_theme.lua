@@ -11,7 +11,8 @@ return {
 				cmp = true,
 				illuminate = true,
 			})
-			vim.cmd.colorscheme 'base16-da-one-ocean'
+			--[[ vim.cmd.colorscheme 'base16-da-one-ocean' ]]
+			vim.cmd.colorscheme 'base16-gruvbox-dark-hard'
 		end
 	}
 
